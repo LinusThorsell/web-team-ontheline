@@ -80,7 +80,7 @@ const NewsTitle = styled.h1`
   text-decoration: underline;
   margin: 0;
 `
-const NewsText = styled.p`
+const NewsText = styled.div`
   font-size: 1em;
   margin: 0;
 `
@@ -134,11 +134,26 @@ function Home() {
       </CenterNewsContainer>
       <NextEvent>
         <NEventContainer>
-          <NETitle>Nästa Event: Gravel Pit 7/5<br></br>Registrering Öppnar: 23/4 18:00 <br></br><a href="https://tjing.se/event/dfd60128-4ac9-41e5-b066-05bec01d28cb/results">Registrera dig på Tjing.se</a></NETitle>
+          <NETitle>Nästa Event: Häfla Bruk den 4/6<br></br><a href="https://tjing.se/event/934ffa2d-2f67-4f93-982f-7dd8e60fbe47/players">Registrera dig på Tjing.se</a></NETitle>
         </NEventContainer>
       </NextEvent>
       <CenterNewsContainer>
       <div>
+
+      <NewsContainer>
+      <NETitle>23/5</NETitle>
+        <NewsTitle>Event 1 och 2 Färdigspelade!</NewsTitle>
+        <NewsText>
+          Hej discgolfare!<br></br>
+          Nu har deltävling 1 och 2 av touren spelats klart. <br></br><br></br>
+          Totalen som gäller är den som ligger här på hemsidan och du hittar den <Link to="/event">Här! (Länk)</Link> <br></br><br></br>
+          Vi har också tagit massor av bilder som ligger på vår <a href="https://www.facebook.com/teamontheline">Facebook-sida</a>! Dessa kommer att komma upp här på hemsidan såsmåningom också! <br></br><br></br>
+          Anmälan för resterande event i Touren är öppna, glöm ej att anmäla er!<br></br><br></br>
+          Linus<br></br>
+          TD för OnTheLine Tour
+        </NewsText>
+      </NewsContainer>
+
       <NewsContainer>
           <NETitle>26/1</NETitle>
           <NewsTitle>Sponsordags!</NewsTitle>
@@ -155,6 +170,7 @@ function Home() {
             TD & Assisterande TD för OnTheLine Tour
           </NewsText>
         </NewsContainer>
+
         <NewsContainer>
           <NETitle>24/1</NETitle>
           <NewsTitle>Datum & Hemsida färdiga!</NewsTitle>

@@ -1,27 +1,26 @@
-const result_2022_1 = `
-1,MPO,Albin,Lindblad,108041
-2,MPO,Kurt,Karlsson,4567
-3,MPO,Fredrik,Wihlborg,80216
-4,MPO,Billy,Rimsby ,84423
-5,MPO,Olle,Karlgren ,103740,118
+const result_2022_1 = `1,MPO,Albin,Lindblad,108041,106
+2,MPO,Kurt,Karlsson,4567,110
+3,MPO,Fredrik,Wihlborg,80216,115
+4,MPO,Billy,Rimsby,84423,115.1
+5,MPO,Olle,Karlgren,103740,118
 6,MPO,Mattias,Sennehed,29051,119
 6,MPO,Joel,Kaputt,,119
 6,MPO,Billy,Haller,139369,119
 9,MPO,Vincent,Müller,190869,123
-9,MPO,William,Hallengren ,190268,123
+9,MPO,William,Hallengren,190268,123
 11,MPO,Andreas,Johansson,75180,124
 11,MPO,David,Ishoel,189959,124
 13,MPO,Henrik,Lagerholm,104429,125
 14,MPO,Benny,Zeidel,106946,126
 15,MPO,Fabian,Lindblad,108043,127
-15,MPO,Erik ,Ruiz Svensson ,119249,127
+15,MPO,Erik,RuizSvensson,119249,127
 15,MPO,Johan,Dahlgren,120114,127
 18,MPO,Linus,Thorsell,182368,130
 1,FPO,Ruth,Schlissel,142225,119
 2,FPO,Anna,Petersson,125495,136
 3,FPO,Maja,Ganessane,190230,141
 4,FPO,Amanda,Björnram,218344,148
-5,FPO,Outi,Larsson,154819,DNF
+5,FPO,Outi,Larsson,154819,999
 1,MA3,Jacob,Olofsson,164309,114
 2,MA3,Alexander,Abrahamsson,187177,116
 3,MA3,Tommy,Sköld,218666,116
@@ -37,7 +36,7 @@ const result_2022_1 = `
 11,MA3,Hampus,Svensson,181352,122
 14,MA3,Emil,Wallver,218976,123
 15,MA3,Adam,Tellsén,183239,124
-15,MA3,Johan ,Lagergren ,191793,124
+15,MA3,Johan,Lagergren,191793,124
 15,MA3,Emil,Persson,206577,124
 18,MA3,Axel,Eriksson,135754,125
 19,MA3,Fredrik,Mäenpää,137911,126
@@ -46,10 +45,10 @@ const result_2022_1 = `
 20,MA3,Måns,Ek,212628,128
 23,MA3,Peter,Karlsson,3752,129
 23,MA3,Alexander,Johansson,153578,129
-23,MA3,Örjan ,Kedman ,219050,129
+23,MA3,Örjan,Kedman,219050,129
 26,MA3,Pontus,Arvidsson,215636,130
-26,MA3,Eric,Lövstrand ,219704,130
-28,MA3,Christian ,Nordberg ,216210,131
+26,MA3,Eric,Lövstrand,219704,130
+28,MA3,Christian,Nordberg,216210,131
 28,MA3,Erik,Mikiwer,130736,131
 28,MA3,Martin,Karlsson,203857,131
 28,MA3,Anton,Blomgren,188867,131
@@ -60,15 +59,15 @@ const result_2022_1 = `
 35,MA3,Henrik,Björk,202863,135
 35,MA3,Ludwig,Carlsson,206615,135
 38,MA3,Rasmus,Kritz,180012,137
-38,MA3,Marko,Huhtaniska ,,137
-40,MA3,Mikael ,Wetterhall,64701,139
+38,MA3,Marko,Huhtaniska,,137
+40,MA3,Mikael,Wetterhall,64701,139
 41,MA3,Robert,Sjöblom,211463,142
-42,MA3,Kenneth ,Johansson ,170598,145
+42,MA3,Kenneth,Johansson,170598,145
 1,MA4,Jonas,Wahlström,205210,121
-2,MA4,Oscar ,Lövborg ,190325,122
+2,MA4,Oscar,Lövborg,190325,122
 3,MA4,Dante,Myhrberg,171507,125
 4,MA4,Emil,Rosqvist,206926,128
-5,MA4,Christoffer,Forsström,211944,129
+5,MA3,Christoffer,Forsström,211944,129
 6,MA4,Ahmmed,Halwachi,199882,131
 6,MA4,Ludwig,Karlsson,,131
 8,MA4,Albin,Larsson,,132
@@ -80,10 +79,8 @@ const result_2022_1 = `
 12,MA4,Andreas,Pirslin,201306,138
 12,MA4,Joe,Larsson,154818,138
 16,MA4,William,Johansson,216587,144
-17,MA4,Martin,Ahx,198310,148
-`;
+17,MA4,Martin,Ahx,198310,148`;
 
-export function get2022_1()
-{
+export function get2022_1(){
     return result_2022_1;
 }

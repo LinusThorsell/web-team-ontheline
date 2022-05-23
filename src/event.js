@@ -6,9 +6,11 @@ import { Link } from 'react-router-dom'
 
 // data files for event results
 import { get2022_1 } from './results/2022_1.js';
+import { get2022_2 } from './results/2022_2.js';
+import { get2022_CTP } from './results/2022_CTP'
 
 const AppContainer = styled.div`
-  overflow: hidden;
+  overflow: show;
 `
 const Logo = styled.img`
   height: 10em;
@@ -39,6 +41,7 @@ const Th = styled.th`
 const Td = styled.td`
   border: 1px solid black;
   padding: 0.5em;
+  font-size: 0.8em;
 `
 
 const H3 = styled.h3`
@@ -99,65 +102,151 @@ class Event extends Component {
     },
   ]
   
-  let MPOTotalen = [
-    {
-      name: "Ej spelad/rapporterad ännu.",
-      points_1: 0,
-      points_2: 0,
-      points_3: 0,
-      points_4: 0,
-      points_5: 0,
-      points_6: 0,
-      best_3: 0,
-      extra_points: 0,
-    },
-  ]
-  let FPOTotalen = [
-    {
-      name: "Ej spelad/rapporterad ännu.",
-      points_1: 0,
-      points_2: 0,
-      points_3: 0,
-      points_4: 0,
-      points_5: 0,
-      points_6: 0,
-      best_3: 0,
-      extra_points: 0,
-    },
-  ]
-  let RecreationalTotalen = [
-    {
-      name: "Ej spelad/rapporterad ännu.",
-      points_1: 0,
-      points_2: 0,
-      points_3: 0,
-      points_4: 0,
-      points_5: 0,
-      points_6: 0,
-      best_3: 0,
-      extra_points: 0,
-    },
-  ]
-  let NoviceTotalen = [
-    {
-      name: "Ej spelad/rapporterad ännu.",
-      points_1: 0,
-      points_2: 0,
-      points_3: 0,
-      points_4: 0,
-      points_5: 0,
-      points_6: 0,
-      best_3: 0,
-      extra_points: 0,
-    },
-  ]
+  let MPOTotalen = []
+  let FPOTotalen = []
+  let RecreationalTotalen = []
+  let NoviceTotalen = []
 
-  function insertData(string_data)
+  let player_strings = [];
+  let players = [];
+
+  function getTotalArray(division)
   {
-    console.log(string_data);
+    switch (division) {
+      case 'MPO':
+        return MPOTotalen;
+      case 'FPO':
+        return FPOTotalen;
+      case 'MA3':
+        return RecreationalTotalen;
+      case 'MA4':
+        return NoviceTotalen;
+      default:
+        return null;
+    }
   }
 
-  insertData(get2022_1());
+  function findPlayerIndex(name, player_list)
+  {
+    let return_value = -1;
+
+    player_list.forEach(function (player, index) {
+      // console.log("Comparing: " + player.name + " and " + name);
+      if (name.trim() === player.name.trim())
+      {
+        // console.log("Comparison success: index: " + index);
+        return_value = index;
+      }
+    });
+
+    // index not available
+    return return_value;
+  }
+
+  function findAndAddPoints(player, points, event_index)
+  {
+    // console.log(player.name + ", " + points);
+
+    let total = getTotalArray(player.division);
+    let indexOfPlayer = findPlayerIndex( player.name, total );
+    if (indexOfPlayer === -1)
+    {
+      total.push({
+        name: player.name,
+        points: [0, 0, 0, 0, 0, 0],
+        best_3: 0,
+        extra_points: 0
+      });
+    }
+    
+    // console.log(total);
+    indexOfPlayer = findPlayerIndex( player.name, total );
+    // console.log(findPlayerIndex( player.name, total ));
+    // console.log(event_index + ", " + indexOfPlayer);
+    total[indexOfPlayer].points[event_index] = points;
+  }
+
+  function insertCTP(string_data)
+  {
+    players = string_data.split(',');
+
+    players.forEach(player => {
+      MPOTotalen.forEach(tot_player => {
+        if (player === tot_player.name)
+        {
+          tot_player.extra_points = tot_player.extra_points + 3;
+        }
+      });
+      FPOTotalen.forEach(tot_player => {
+        if (player === tot_player.name)
+        {
+          tot_player.extra_points = tot_player.extra_points + 3;
+        }
+      });
+      RecreationalTotalen.forEach(tot_player => {
+        if (player === tot_player.name)
+        {
+          tot_player.extra_points = tot_player.extra_points + 3;
+        }
+      });
+      NoviceTotalen.forEach(tot_player => {
+        if (player === tot_player.name)
+        {
+          tot_player.extra_points = tot_player.extra_points + 3;
+        }
+      });
+    });
+  };
+
+  function insertData(string_data, event_index)
+  {
+    player_strings = string_data.split('\n');
+    players = [];
+    
+    player_strings.forEach(line => {
+      let temp = line.split(',');
+
+      players.push({
+        place: temp[0],
+        division: temp[1],
+        name: temp[2] + " " + temp[3],
+        pdga: temp[4],
+        score: temp[5]
+      });
+    });
+
+    // console.log(players);
+    players.sort((a,b) => a.score - b.score);
+    // console.log(players);
+
+    let points = 100;
+    players.forEach(player => {
+      findAndAddPoints(player, points, event_index);
+      points--;
+    });
+  }
+
+  function calculateBestThreeAndSort(total) {
+    total.forEach(player => {
+      let temp_score = 0;
+      player.points.forEach(point => {
+        temp_score += point;
+      });
+      player.best_3 = temp_score + player.extra_points;
+    });
+
+    total.sort((a,b) => b.best_3 - a.best_3);
+  }
+
+  insertData(get2022_1(), 0);
+  insertData(get2022_2(), 1);
+
+  insertCTP(get2022_CTP());
+  
+  calculateBestThreeAndSort(MPOTotalen);
+  calculateBestThreeAndSort(FPOTotalen);
+  calculateBestThreeAndSort(RecreationalTotalen);
+  calculateBestThreeAndSort(NoviceTotalen);
 
   return (
     <AppContainer>
@@ -203,6 +292,7 @@ class Event extends Component {
       <thead>
       <Tr key="MPOTableHeader">
           <Th>Namn</Th>
+          <Th>Tot</Th>
           <Th>Gravel Pit</Th>
           <Th>Tallbackens DGB</Th>
           <Th>Häfla Bruk DGP</Th>
@@ -216,12 +306,13 @@ class Event extends Component {
       {MPOTotalen.map(data => (
         <Tr key={data.name}>
           <Td>{data.name}</Td>
-          <Td>{data.points_1}</Td>
-          <Td>{data.points_2}</Td>
-          <Td>{data.points_3}</Td>
-          <Td>{data.points_4}</Td>
-          <Td>{data.points_5}</Td>
-          <Td>{data.points_6}</Td>
+          <Td>{data.best_3}</Td>
+          <Td>{data.points[0]}</Td>
+          <Td>{data.points[1]}</Td>
+          <Td>{data.points[2]}</Td>
+          <Td>{data.points[3]}</Td>
+          <Td>{data.points[4]}</Td>
+          <Td>{data.points[5]}</Td>
           <Td>{data.extra_points}</Td>
         </Tr>
       ))}
@@ -235,6 +326,7 @@ class Event extends Component {
       <thead>
       <Tr>
           <Th>Namn</Th>
+          <Th>Tot</Th>
           <Th>Gravel Pit</Th>
           <Th>Tallbackens DGB</Th>
           <Th>Häfla Bruk DGP</Th>
@@ -248,12 +340,13 @@ class Event extends Component {
       {FPOTotalen.map(data => (
         <Tr key={data.name}>
           <Td>{data.name}</Td>
-          <Td>{data.points_1}</Td>
-          <Td>{data.points_2}</Td>
-          <Td>{data.points_3}</Td>
-          <Td>{data.points_4}</Td>
-          <Td>{data.points_5}</Td>
-          <Td>{data.points_6}</Td>
+          <Td>{data.best_3}</Td>
+          <Td>{data.points[0]}</Td>
+          <Td>{data.points[1]}</Td>
+          <Td>{data.points[2]}</Td>
+          <Td>{data.points[3]}</Td>
+          <Td>{data.points[4]}</Td>
+          <Td>{data.points[5]}</Td>
           <Td>{data.extra_points}</Td>
         </Tr>
       ))}
@@ -267,6 +360,7 @@ class Event extends Component {
       <thead>
       <Tr>
           <Th>Namn</Th>
+          <Th>Tot</Th>
           <Th>Gravel Pit</Th>
           <Th>Tallbackens DGB</Th>
           <Th>Häfla Bruk DGP</Th>
@@ -280,12 +374,13 @@ class Event extends Component {
       {RecreationalTotalen.map(data => (
         <Tr key={data.name}>
           <Td>{data.name}</Td>
-          <Td>{data.points_1}</Td>
-          <Td>{data.points_2}</Td>
-          <Td>{data.points_3}</Td>
-          <Td>{data.points_4}</Td>
-          <Td>{data.points_5}</Td>
-          <Td>{data.points_6}</Td>
+          <Td>{data.best_3}</Td>
+          <Td>{data.points[0]}</Td>
+          <Td>{data.points[1]}</Td>
+          <Td>{data.points[2]}</Td>
+          <Td>{data.points[3]}</Td>
+          <Td>{data.points[4]}</Td>
+          <Td>{data.points[5]}</Td>
           <Td>{data.extra_points}</Td>
         </Tr>
       ))}
@@ -299,6 +394,7 @@ class Event extends Component {
       <thead>
       <Tr>
           <Th>Namn</Th>
+          <Th>Tot</Th>
           <Th>Gravel Pit</Th>
           <Th>Tallbackens DGB</Th>
           <Th>Häfla Bruk DGP</Th>
@@ -312,12 +408,13 @@ class Event extends Component {
       {NoviceTotalen.map(data => (
         <Tr key={data.name}>
           <Td>{data.name}</Td>
-          <Td>{data.points_1}</Td>
-          <Td>{data.points_2}</Td>
-          <Td>{data.points_3}</Td>
-          <Td>{data.points_4}</Td>
-          <Td>{data.points_5}</Td>
-          <Td>{data.points_6}</Td>
+          <Td>{data.best_3}</Td>
+          <Td>{data.points[0]}</Td>
+          <Td>{data.points[1]}</Td>
+          <Td>{data.points[2]}</Td>
+          <Td>{data.points[3]}</Td>
+          <Td>{data.points[4]}</Td>
+          <Td>{data.points[5]}</Td>
           <Td>{data.extra_points}</Td>
         </Tr>
       ))}
