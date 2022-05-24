@@ -145,8 +145,6 @@ class Event extends Component {
 
   function findAndAddPoints(player, points, event_index)
   {
-    // console.log(player.name + ", " + points);
-
     let total = getTotalArray(player.division);
     let indexOfPlayer = findPlayerIndex( player.name, total );
     if (indexOfPlayer === -1)
@@ -159,10 +157,7 @@ class Event extends Component {
       });
     }
     
-    // console.log(total);
     indexOfPlayer = findPlayerIndex( player.name, total );
-    // console.log(findPlayerIndex( player.name, total ));
-    // console.log(event_index + ", " + indexOfPlayer);
     total[indexOfPlayer].points[event_index] = points;
   }
 
@@ -220,7 +215,31 @@ class Event extends Component {
     // console.log(players);
 
     let points = 100;
-    players.forEach(player => {
+    players.forEach(function (player, index) {
+      // if (player.score === players[index+1])
+      // {
+        // switch player.score
+        // case != players+1 NO TIE
+        // case != players+2 TIE OF 1.
+        // case != players+3 TIE OF 2.
+      // }
+      var score = player.score;
+      switch (true) {
+        case (score !== players[index+1].score):
+          // no tie
+          if (players[index+1] === null) {break;}
+          console.log("No tie");
+          break;
+        case (score !== players[index+2].score):
+          // tie of 1
+          if (players[index+2] === null) {break;}
+          console.log("Tie between: " + player.name + ":" + player.score + " and " + players[index+1].name + ":" + players[index+1].score);
+          break;
+        default:
+          // no tie
+          // console.log("No tie")
+          break;
+      }
       findAndAddPoints(player, points, event_index);
       points--;
     });

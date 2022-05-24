@@ -23,8 +23,8 @@ const result_2022_1 = `1,MPO,Albin,Lindblad,108041,106
 5,FPO,Outi,Larsson,154819,999
 1,MA3,Jacob,Olofsson,164309,114
 2,MA3,Alexander,Abrahamsson,187177,116
-3,MA3,Tommy,Sköld,218666,116
-4,MA3,Christoffer,Svensson,181297,116
+3,MA3,Tommy,Sköld,218666,116.1
+4,MA3,Christoffer,Svensson,181297,116.2
 5,MA3,Jakob,Andersson,183012,117
 6,MA3,Jakob,Tellsén,175009,119
 6,MA3,Hampus,Andersson,219705,119
@@ -64,7 +64,7 @@ const result_2022_1 = `1,MPO,Albin,Lindblad,108041,106
 41,MA3,Robert,Sjöblom,211463,142
 42,MA3,Kenneth,Johansson,170598,145
 1,MA4,Jonas,Wahlström,205210,121
-2,MA4,Oscar,Lövborg,190325,122
+2,MA3,Oscar,Lövborg,190325,122
 3,MA4,Dante,Myhrberg,171507,125
 4,MA4,Emil,Rosqvist,206926,128
 5,MA3,Christoffer,Forsström,211944,129
