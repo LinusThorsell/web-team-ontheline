@@ -214,34 +214,45 @@ class Event extends Component {
     players.sort((a,b) => a.score - b.score);
     // console.log(players);
 
+    let currently_tied_players_remaining = 0;
+    let tied_players_points = -9999;
     let points = 100;
-    players.forEach(function (player, index) {
-      // if (player.score === players[index+1])
-      // {
-        // switch player.score
-        // case != players+1 NO TIE
-        // case != players+2 TIE OF 1.
-        // case != players+3 TIE OF 2.
-      // }
-      var score = player.score;
-      switch (true) {
-        case (score !== players[index+1].score):
-          // no tie
-          if (players[index+1] === null) {break;}
-          console.log("No tie");
-          break;
-        case (score !== players[index+2].score):
-          // tie of 1
-          if (players[index+2] === null) {break;}
-          console.log("Tie between: " + player.name + ":" + player.score + " and " + players[index+1].name + ":" + players[index+1].score);
-          break;
-        default:
-          // no tie
-          // console.log("No tie")
-          break;
+    players.forEach(player => {
+
+      if (currently_tied_players_remaining > 0)
+      {
+        currently_tied_players_remaining--;
+        findAndAddPoints(player, 699999, event_index);
       }
-      findAndAddPoints(player, points, event_index);
-      points--;
+      else
+      {
+        var score = player.score;
+        var tie_count = 0;
+        players.forEach(el => {
+          if (score === el.score)
+          {
+            tie_count++;
+          }
+  
+          if (tie_count > 0) 
+          {
+            console.log("TIE FOUND: " + tie_count + " players tied at: " + score);
+          }
+        });
+  
+        if (tie_count > 0)
+        {
+          currently_tied_players_remaining = tie_count;
+          tied_players_points = points;
+          findAndAddPoints(player, points, event_index);
+          points -= tie_count;
+        }
+        else
+        {
+          findAndAddPoints(player, points, event_index);
+          points--;
+        }
+      }
     });
   }
 
