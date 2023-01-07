@@ -31,7 +31,7 @@ function TDCard(props) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345, margin: "1em" }}>
+    <Card sx={{ minWidth: '15em', width: '23em', maxWidth: '30%', minHeight: '30em', margin: "1em" }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -43,7 +43,7 @@ function TDCard(props) {
       />
       <CardMedia
         component="img"
-        height="250"
+        height="280"
         image={props.mainimage}
         alt="Paella dish"
       />

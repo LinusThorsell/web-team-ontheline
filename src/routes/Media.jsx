@@ -17,6 +17,8 @@ function Media() {
 
   return (
     <div style={{ backgroundColor: "#301934" }}>
+      <h1 style={{textAlign: 'center', marginBottom: '0', paddingBottom: '0'}}>OnTheLine Tour 2022</h1>
+      <p style={{textAlign:'center', marginTop: '0', paddingTop: '0'}}>Sponsored by MVP Disc Sports</p>
       <Gallery
         images={images}
         onClick={handleClick}

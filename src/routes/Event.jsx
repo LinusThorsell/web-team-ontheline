@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import EventCard from "../components/EventCard";
+import { useState, useEffect } from "react";
+
+import { getEvents } from "../firebase";
 
 const EventData = [
   {
@@ -34,9 +37,17 @@ const EventCardContainer = styled.ul`
 `;
 
 function Event() {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    getEvents().then((data) => {
+      setEvents(data);
+    });
+  }, []);
+
   return (
     <EventCardContainer>
-      {EventData.map((event) => (
+      {events.map((event) => (
         <>
           <EventCard
             event={event.event}
@@ -44,6 +55,7 @@ function Event() {
             sponsor={event.sponsor}
             date={event.date}
             signup_url={event.signup_url}
+            key={event.event + event.course + event.date}
           />
         </>
       ))}

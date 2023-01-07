@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const FooterContainer = styled.div`
   margin: 0;
@@ -49,6 +50,7 @@ function Footer() {
         <li>vincent@teamontheline.com</li>
         <li>robert@teamontheline.com</li>
       </ListContainer>
+      <Link to="/admin"> Admin Page </Link>
     </FooterContainer>
   );
 }

@@ -7,8 +7,8 @@ const TDData = [
     mainimage:
       "https://www.pdga.com/files/styles/large/public/pictures/picture-1959196-1649747166.jpg?itok=XSIJxB6Z",
     name: "Linus Thorsell",
-    tags: "Awesome dude",
-    description: "awesome description",
+    tags: "Tour Sponsorship, Business, Website",
+    description: "Linus är en av grundarna till OnTheLine och ansvarar för allt som har med Tour Sponsorship, Business och Website att göra.",
     inthebag: "some great discs from MVP discs",
   },
   {
@@ -16,8 +16,8 @@ const TDData = [
     mainimage:
       "https://www.pdga.com/files/styles/large/public/pictures/picture-1959196-1649747166.jpg?itok=XSIJxB6Z",
     name: "Vincent Müller",
-    tags: "Awesome dude",
-    description: "awesome description",
+    tags: "Design, Budget Planner",
+    description: "Vincent är en av grundarna till OnTheLine och ansvarar för allt som har med Design och Budget Planner att göra.",
     inthebag: "some great discs from MVP discs",
   },
   {
@@ -25,8 +25,8 @@ const TDData = [
     mainimage:
       "https://www.pdga.com/files/styles/large/public/pictures/picture-1959196-1649747166.jpg?itok=XSIJxB6Z",
     name: "Robert Sjöblom",
-    tags: "Awesome dude",
-    description: "awesome description",
+    tags: "Operations, Events, Per Event Sponsorships",
+    description: "Robert är ett nyförvärv för 2023 och ansvarar för allt som har med Operations, Events och Per Event Sponsorships att göra.",
     inthebag: "some great discs from MVP discs",
   },
 ];

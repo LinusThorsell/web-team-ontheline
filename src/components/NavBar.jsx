@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const ImageContainer = styled.div`
@@ -56,16 +56,23 @@ const NavList = styled.ul`
   justify-content: space-around;
 `;
 const NavListItem = styled.li`
+
   a {
     text-decoration: none;
     color: white;
   }
   a:hover {
-    color: orange;
+    color: #ce93d8;
   }
 `;
 
 function NavBar() {
+
+  let activeStyle = {
+    color: "#ce93d8",
+    textDecoration: "underline",
+  };
+
   return (
     <ImageContainer>
       <Image src="https://firebasestorage.googleapis.com/v0/b/team-ontheline.appspot.com/o/Screenshot_20230105_154928.jpg?alt=media&token=9238acbd-7c67-457a-a07a-6f5e163439e3" />
@@ -73,19 +80,19 @@ function NavBar() {
       <NavContainer>
         <NavList>
           <NavListItem>
-            <Link to="/">Hem</Link>
+            <NavLink to="/" style={({ isActive }) => isActive ? activeStyle : undefined}>Hem</NavLink>
           </NavListItem>
           <NavListItem>
-            <Link to="/event">Event</Link>
+            <NavLink to="/event" style={({ isActive }) => isActive ? activeStyle : undefined}>Event</NavLink>
           </NavListItem>
           <NavListItem>
-            <Link to="/media">Media</Link>
+            <NavLink to="/media" style={({ isActive }) => isActive ? activeStyle : undefined}>Media</NavLink>
           </NavListItem>
           <NavListItem>
-            <Link to="/team">Team</Link>
+            <NavLink to="/team" style={({ isActive }) => isActive ? activeStyle : undefined}>Team</NavLink>
           </NavListItem>
           <NavListItem>
-            <Link to="/kontakt">Kontakt</Link>
+            <NavLink to="/kontakt">Kontakt</NavLink>
           </NavListItem>
         </NavList>
       </NavContainer>
