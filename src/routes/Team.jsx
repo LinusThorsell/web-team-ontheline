@@ -1,35 +1,7 @@
+import {useState, useEffect} from 'react';
 import styled from "styled-components";
 import TDCard from "../components/TDCard";
-
-const TDData = [
-  {
-    profileimage: "",
-    mainimage:
-      "https://www.pdga.com/files/styles/large/public/pictures/picture-1959196-1649747166.jpg?itok=XSIJxB6Z",
-    name: "Linus Thorsell",
-    tags: "Tour Sponsorship, Business, Website",
-    description: "Linus är en av grundarna till OnTheLine och ansvarar för allt som har med Tour Sponsorship, Business och Website att göra.",
-    inthebag: "some great discs from MVP discs",
-  },
-  {
-    profileimage: "",
-    mainimage:
-      "https://www.pdga.com/files/styles/large/public/pictures/picture-1959196-1649747166.jpg?itok=XSIJxB6Z",
-    name: "Vincent Müller",
-    tags: "Design, Budget Planner",
-    description: "Vincent är en av grundarna till OnTheLine och ansvarar för allt som har med Design och Budget Planner att göra.",
-    inthebag: "some great discs from MVP discs",
-  },
-  {
-    profileimage: "",
-    mainimage:
-      "https://www.pdga.com/files/styles/large/public/pictures/picture-1959196-1649747166.jpg?itok=XSIJxB6Z",
-    name: "Robert Sjöblom",
-    tags: "Operations, Events, Per Event Sponsorships",
-    description: "Robert är ett nyförvärv för 2023 och ansvarar för allt som har med Operations, Events och Per Event Sponsorships att göra.",
-    inthebag: "some great discs from MVP discs",
-  },
-];
+import { getTeam } from "../firebase";
 
 const TeamContainer = styled.div`
   margin: 0;
@@ -72,20 +44,28 @@ const TeamMemberContainer = styled.div`
 `;
 
 function Team() {
+  const [team, setTeam] = useState([]);
+
+  useEffect(() => {
+    getTeam().then((data) => {
+      setTeam(data);
+    });
+  }, []);
+
   return (
     <TeamContainer>
       <h1>Team OnTheLine 2023</h1>
       <p>Det är vi som kommer göra OnTheline's event riktigt grymma!</p>
       <TeamMemberContainer>
-        {TDData.map((td) => (
+        {team.map((td) => (
           <TDCard
-            profileimage={td.profileimage}
-            mainimage={td.mainimage}
-            name={td.name}
-            tags={td.tags}
-            description={td.description}
-            inthebag={td.inthebag}
-            key={td.name}
+            profileimage={td.data.profileimage}
+            mainimage={td.data.mainimage}
+            name={td.data.name}
+            tags={td.data.tags}
+            description={td.data.description}
+            inthebag={td.data.inthebag}
+            key={td.data.name}
           />
         ))}
       </TeamMemberContainer>

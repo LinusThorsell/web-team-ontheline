@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../firebase";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
+import Button from "@mui/material/Button";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,7 +17,6 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         navigate("/admin");
-        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -33,6 +33,7 @@ const Login = () => {
       })
       .catch((error) => {
         // An error happened.
+        console.log("Err: ", error);
       });
   };
 
@@ -69,8 +70,12 @@ const Login = () => {
             </div>
 
             <div>
-              <button onClick={onLogin}>Login</button>
-              <button onClick={handleLogout}>Logout</button>
+              <Button color="secondary" onClick={onLogin}>
+                Login
+              </Button>
+              <Button color="secondary" onClick={handleLogout}>
+                Logout
+              </Button>
             </div>
           </form>
         </div>

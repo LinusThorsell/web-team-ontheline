@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export default function BasicCard(props) {
+export default function EventCard(props) {
   return (
     <Card sx={{ margin: "0.5em" }}>
       <CardContent>

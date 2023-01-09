@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { getNews } from "../firebase";
 
 const NewsContainer = styled.div`
   margin: 0;
@@ -37,24 +37,7 @@ const NewsContentContainer = styled.div`
   }
 `;
 
-const NewsData = [
-  {
-    title: "OnTheLine Tour 2023!",
-    date: "XX/01 - 2023",
-    content:
-      "Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
-    id: null,
-  },
-  {
-    title: "Ny Hemsida!",
-    date: "05/01 - 2023",
-    content:
-      "Nu har vi än en gång uppdaterat våran hemsida! Detta kommer att göra så att sidan är både snabbare och lättare att navigera, bilder från 2022 års tour är även uppladdade under fliken 'Media'! Pass på och kolla den för att se hur kul vi hade förra året! Hoppas vi kan ha det lika roligt på årets tour! Mvh TD Linus Thorsell",
-    id: null,
-  },
-];
-
-function NewsContent(props) {
+export function NewsContent(props) {
   const [expanded, setExpanded] = useState(false);
 
   function toggleExpanded() {
@@ -68,17 +51,6 @@ function NewsContent(props) {
     content = content.slice(0, 80) + "...";
     buttontext = "Visa mer...";
   }
-
-  // return (
-  //   <NewsContentContainer>
-  //     <NewsTitle>{props.title}</NewsTitle>
-  //     <NewsDate>{props.date}</NewsDate>
-  //     <NewsParagraph>{content}</NewsParagraph>
-  //     <NewsButton type="button" onClick={toggleExpanded}>
-  //       {buttontext}
-  //     </NewsButton>
-  //   </NewsContentContainer>
-  // );
 
   return (
     <NewsContentContainer>
@@ -103,14 +75,24 @@ function NewsContent(props) {
 }
 
 function News() {
-  // TODO: change to use props instead when done
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    getNews().then((data) => {
+      setNews(data);
+    });
+  }, []);
 
   const [amountNewsPosts, setAmountNewsPosts] = useState(1);
 
   // Assign id's to newsposts
-  NewsData.forEach((newsarticle, index) => {
-    newsarticle.id = index;
-  });
+  if (news[0] !== undefined && news[0].id === null) {
+    let temp_news = news;
+    temp_news.forEach((newsarticle, index) => {
+      newsarticle.id = index;
+    });
+    setNews(temp_news);
+  }
 
   function increaseLoadedNewsPosts() {
     setAmountNewsPosts(amountNewsPosts * 2);
@@ -118,16 +100,16 @@ function News() {
 
   return (
     <NewsContainer>
-      {NewsData.map((news) => {
-        return news.id < amountNewsPosts ? (
+      {news.map((newsitem) => {
+        return newsitem.id < amountNewsPosts ? (
           <NewsContent
-            title={news.title}
-            date={news.date}
-            content={news.content}
-            key={news.title + news.date}
+            title={newsitem.title}
+            date={newsitem.date}
+            content={newsitem.content}
+            key={newsitem.id}
           />
         ) : (
-          <></>
+          <div key={newsitem.id}></div>
         );
       })}
       <Button

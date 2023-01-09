@@ -49,8 +49,8 @@ function Footer() {
         <li>linus@teamontheline.com</li>
         <li>vincent@teamontheline.com</li>
         <li>robert@teamontheline.com</li>
+        <Link to="/admin"> Admin </Link>
       </ListContainer>
-      <Link to="/admin"> Admin Page </Link>
     </FooterContainer>
   );
 }

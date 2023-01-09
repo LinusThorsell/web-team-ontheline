@@ -56,7 +56,6 @@ const NavList = styled.ul`
   justify-content: space-around;
 `;
 const NavListItem = styled.li`
-
   a {
     text-decoration: none;
     color: white;
@@ -67,7 +66,6 @@ const NavListItem = styled.li`
 `;
 
 function NavBar() {
-
   let activeStyle = {
     color: "#ce93d8",
     textDecoration: "underline",
@@ -80,16 +78,36 @@ function NavBar() {
       <NavContainer>
         <NavList>
           <NavListItem>
-            <NavLink to="/" style={({ isActive }) => isActive ? activeStyle : undefined}>Hem</NavLink>
+            <NavLink
+              to="/"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Hem
+            </NavLink>
           </NavListItem>
           <NavListItem>
-            <NavLink to="/event" style={({ isActive }) => isActive ? activeStyle : undefined}>Event</NavLink>
+            <NavLink
+              to="/event"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Event
+            </NavLink>
           </NavListItem>
           <NavListItem>
-            <NavLink to="/media" style={({ isActive }) => isActive ? activeStyle : undefined}>Media</NavLink>
+            <NavLink
+              to="/media"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Media
+            </NavLink>
           </NavListItem>
           <NavListItem>
-            <NavLink to="/team" style={({ isActive }) => isActive ? activeStyle : undefined}>Team</NavLink>
+            <NavLink
+              to="/team"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Team
+            </NavLink>
           </NavListItem>
           <NavListItem>
             <NavLink to="/kontakt">Kontakt</NavLink>

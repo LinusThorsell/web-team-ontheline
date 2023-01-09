@@ -6,10 +6,8 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const ExpandMore = styled((props) => {
@@ -30,22 +28,23 @@ function TDCard(props) {
     setExpanded(!expanded);
   };
 
+  // TODO: Fix formatting in the inthebag dropdown
   return (
-    <Card sx={{ minWidth: '15em', width: '23em', maxWidth: '30%', minHeight: '30em', margin: "1em" }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        title={props.name}
-        subheader={props.tags}
-      />
+    <Card
+      sx={{
+        minWidth: "15em",
+        width: "23em",
+        maxWidth: "30%",
+        minHeight: "30em",
+        margin: "1em",
+      }}
+    >
+      <CardHeader title={props.name} subheader={props.tags} />
       <CardMedia
         component="img"
         height="280"
         image={props.mainimage}
-        alt="Paella dish"
+        alt={"Picture of: " + props.name}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -65,7 +64,13 @@ function TDCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{props.inthebag}</Typography>
+          {props.inthebag.split("\\n").map((item) => {
+            return (
+              <Typography key={item} paragraph>
+                {item}
+              </Typography>
+            );
+          })}
         </CardContent>
       </Collapse>
     </Card>
