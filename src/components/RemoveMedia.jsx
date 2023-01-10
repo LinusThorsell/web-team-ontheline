@@ -4,6 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { getMediaImages, removeImage } from "../firebase";
+import { CardHeader } from "@mui/material";
 
 function DisplayImageCard(props) {
   function handleRemoveImage() {
@@ -23,7 +24,7 @@ function DisplayImageCard(props) {
         }}
       >
         <img style={{ width: "5em", height: "5em" }} src={props.src} />
-        <Button onClick={handleRemoveImage}>Remove</Button>
+        <Button onClick={handleRemoveImage} color="secondary">Remove</Button>
       </Card>
     </>
   );
@@ -53,14 +54,19 @@ export default function RemoveMedia(props) {
   if (images[0] === undefined) {
     return (
       <Card sx={{ margin: "0.5em" }}>
-        <h1>Select Folder</h1>
+        <CardContent>
+          <h1>Remove Media</h1>
+          <h3>Select Folder in 'Upload Media' dropdown above</h3>
+        </CardContent>
       </Card>
     );
   }
 
   return (
     <Card sx={{ margin: "0.5em" }}>
-      <h1>Remove Media</h1>
+      <CardContent sx={{ display: "flex", flexWrap: "wrap" }}>
+        <h1>Remove Media</h1>
+      </CardContent>
       <CardContent sx={{ display: "flex", flexWrap: "wrap" }}>
         {images.map((image) => {
           return (

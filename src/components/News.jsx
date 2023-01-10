@@ -9,6 +9,7 @@ import { getNews } from "../firebase";
 
 const NewsContainer = styled.div`
   margin: 0;
+  margin-top: 0.5em;
   padding: 0;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -33,7 +34,7 @@ const NewsContentContainer = styled.div`
     width: 50em;
   }
   @media (min-width: 70em) {
-    width: 70em;
+    width: 65em;
   }
 `;
 
@@ -48,7 +49,8 @@ export function NewsContent(props) {
   let buttontext = "Visa mindre...";
 
   if (!expanded) {
-    content = content.slice(0, 80) + "...";
+    let { innerWidth: width } = window;
+    content = content.slice(0, 150) + "...";
     buttontext = "Visa mer...";
   }
 

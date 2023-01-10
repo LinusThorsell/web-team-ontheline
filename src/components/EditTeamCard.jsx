@@ -38,10 +38,10 @@ function EditTDCard(props) {
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <h1>{props.td.id}</h1>
-        <Button onClick={loadCurrentData}>Ladda in nuvarande kort</Button>
+        <Button onClick={loadCurrentData} color="secondary">Ladda in nuvarande kort</Button>
         <form>
           <label>
-            Namn:
+            Namn <br/>
             <input
               type="text"
               name="name"
@@ -51,8 +51,8 @@ function EditTDCard(props) {
           </label>
           <br />
           <label>
-            Beskrivning:
-            <input
+            Beskrivning <br/>
+            <textarea
               type="text"
               name="description"
               value={td.description}
@@ -61,8 +61,8 @@ function EditTDCard(props) {
           </label>
           <br />
           <label>
-            In The Bag:
-            <input
+            In The Bag <br />
+            <textarea
               type="text"
               name="inthebag"
               value={td.inthebag}
@@ -71,7 +71,7 @@ function EditTDCard(props) {
           </label>
           <br />
           <label>
-            Large Image:
+            Large Image <br/>
             <input
               type="text"
               name="mainimage"
@@ -81,7 +81,7 @@ function EditTDCard(props) {
           </label>
           <br />
           <label>
-            Tags:
+            Tags <br/>
             <input
               type="text"
               name="tags"
@@ -91,7 +91,7 @@ function EditTDCard(props) {
           </label>
           <br />
         </form>
-      <Button onClick={handleSubmit}>Spara ändringar i databasen</Button>
+      <Button onClick={handleSubmit} color="secondary">Spara ändringar i databasen</Button>
       </CardContent>
       <TDCard
         mainimage={td.mainimage}
@@ -118,7 +118,7 @@ export default function EditTeamCard() {
     <Card sx={{ margin: "0.5em" }}>
       <CardContent>
         <h1>Edit Team</h1>
-        <Button onClick={loadTeam}>Load Team</Button>
+        <Button onClick={loadTeam} color="secondary">Load Team</Button>
 
         {team.map((td) => (
           <EditTDCard td={td} key={td.id} />

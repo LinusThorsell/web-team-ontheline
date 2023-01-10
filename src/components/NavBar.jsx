@@ -29,15 +29,18 @@ const Logo = styled.img`
 
 const NavContainer = styled.nav`
   z-index: 2;
-  float: left;
   position: absolute;
   margin-top: 5em;
 
   height: 2em;
-  width: 100vw;
+  width: 100%;
 
   color: white;
   background-color: rgba(48, 25, 52, 0.9);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   overflow: hidden;
 `;
@@ -47,6 +50,8 @@ const NavList = styled.ul`
 
   height: 100%;
   width: 100%;
+  max-width: 50em;
+
   margin: 0;
   padding: 0;
 

@@ -18,12 +18,32 @@ import EventCard from "../components/EventCard";
 import { NewsContent } from "../components/News";
 import RemoveMedia from "../components/RemoveMedia";
 import EditTeamCard from "../components/EditTeamCard";
+import EditNextEvent from "../components/EditNextEvent";
+import RemoveEvent from "../components/RemoveEvent";
 
 const Form = styled.form`
   div {
     display: flex;
     flex-direction: column;
   }
+`;
+const AdminContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 50em;
+
+  margin: auto;
+`;
+const InsertDivider = styled.div`
+  background-color: pink;
+  height: 0.2em;
+  width: 100%;
+
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+
+  opacity: 0.3;
 `;
 
 function Admin() {
@@ -157,12 +177,18 @@ function Admin() {
   }
 
   return (
-    <>
+    <AdminContainer>
       <h1 style={{ textAlign: "center", marginBottom: "0" }}>Admin panel</h1>
       <p style={{ textAlign: "center", marginTop: "0" }}>
         Om du har hamnat här och du vet med dig att du inte ska kunna komma hit,
         kontakta linus@teamontheline.com
       </p>
+
+      <InsertDivider />
+
+      <EditNextEvent />
+
+      <InsertDivider />
 
       <Card
         sx={{
@@ -236,7 +262,8 @@ function Admin() {
           </Button>
         </Form>
       </Card>
-
+      
+      <p>Preview Event</p>
       <EventCard
         event={addEventObject.event}
         course={addEventObject.course}
@@ -244,6 +271,10 @@ function Admin() {
         date={addEventObject.date}
         signup_url={addEventObject.signup_url}
       />
+      
+      <RemoveEvent />
+
+      <InsertDivider />
 
       <Card
         sx={{
@@ -295,7 +326,8 @@ function Admin() {
           </Button>
         </Form>
       </Card>
-
+      
+      <p>Preview News</p>
       <div style={{ marginLeft: "5%", marginTop: "0.5em" }}>
         <NewsContent
           title={addNewsObject.title}
@@ -303,6 +335,8 @@ function Admin() {
           content={addNewsObject.content}
         />
       </div>
+
+      <InsertDivider />
 
       <Card
         sx={{
@@ -403,10 +437,14 @@ function Admin() {
           </Button>
         </Form>
       </Card>
-    
+     
+      <InsertDivider />
+
       <EditTeamCard />
 
-    </>
+      <InsertDivider />
+
+    </AdminContainer>
   );
 }
 

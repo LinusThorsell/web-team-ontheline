@@ -13,6 +13,7 @@ import Home from "./routes/Home";
 import Event from "./routes/Event";
 import Media from "./routes/Media";
 import Team from "./routes/Team";
+import Contact from "./routes/Contact.jsx"
 import Admin from "./routes/Admin";
 import AdminLogin from "./routes/AdminLogin";
 import FourZeroFour from "./routes/FourZeroFour";
@@ -32,6 +33,8 @@ const MainPageContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  overflow-x: hidden;
 `;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -45,6 +48,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/event" element={<Event />} />
             <Route path="/media" element={<Media />} />
             <Route path="/team" element={<Team />} />
+            <Route path="/kontakt" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="*" element={<FourZeroFour />} />

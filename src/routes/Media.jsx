@@ -43,8 +43,6 @@ function MediaGalleryLightbox(props) {
 }
 
 function Media() {
-  console.log("Media.jsx");
-
   const [realImages, setRealImages] = useState([]);
   const [hasRequestedImages, setHasRequestedImages] = useState(false);
 

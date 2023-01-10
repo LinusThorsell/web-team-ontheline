@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const EventMapContainer = styled.div`
   margin: 0;
-  padding; 0;
+  padding: 0;
 
   width: 100%;
   height: auto;
@@ -21,7 +21,7 @@ const EventMapImage = styled.img`
     width: 50em;
   }
   @media (min-width: 70em) {
-    width: 70em;
+    width: 65em;
   }
 `;
 

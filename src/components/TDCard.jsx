@@ -32,7 +32,7 @@ function TDCard(props) {
   return (
     <Card
       sx={{
-        minWidth: "15em",
+        minWidth: "20em",
         width: "23em",
         maxWidth: "30%",
         minHeight: "30em",

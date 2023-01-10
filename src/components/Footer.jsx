@@ -39,16 +39,22 @@ function Footer() {
       </ListContainer>
       <ListContainer>
         <h3>Sociala Medier</h3>
-        <li>Instagram</li>
-        <li>Facebook</li>
+        <li>
+          <a style={{color: 'white'}} href="https://www.instagram.com/team_ontheline/" target="_blank">
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a style={{color: 'white'}} href="https://www.facebook.com/teamontheline" target="_blank">
+            Facebook
+          </a>
+        </li>
       </ListContainer>
       <ListContainer>
         <h3>Kontakt</h3>
-        <li>help@teamontheline.com</li>
+        <li>kontakta@teamontheline.com</li>
         <li>sponsors@teamontheline.com</li>
-        <li>linus@teamontheline.com</li>
-        <li>vincent@teamontheline.com</li>
-        <li>robert@teamontheline.com</li>
+        <li>admin@teamontheline.com</li>
         <Link to="/admin"> Admin </Link>
       </ListContainer>
     </FooterContainer>

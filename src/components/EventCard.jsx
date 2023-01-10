@@ -21,7 +21,7 @@ export default function EventCard(props) {
         <Typography variant="body2">{props.sponsor}</Typography>
       </CardContent>
       <CardActions>
-        <Button color="secondary" size="small">
+        <Button href={props.signup_url} target="_blank" color="secondary" size="small">
           Registrering
         </Button>
       </CardActions>

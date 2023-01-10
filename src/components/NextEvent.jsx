@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { getNextEvent } from "../firebase";
 
 const NextEventContainer = styled.div`
   padding: 0;
@@ -26,11 +28,41 @@ const NextEventTitle = styled.h2`
   font-size: 1em;
 `;
 
-function NextEvent(props) {
+function NextEvent() {
+  const [nextEvent, setNextEvent] = useState({
+    name: "",
+    date: "",
+    signup_url: "",
+    override_message: ".",
+  });
+
+  useEffect(() => {
+    getNextEvent().then((data) => {
+      setNextEvent(data);
+    });
+  }, []);
+
+  if (nextEvent.override_message.length > 0) {
+    return (
+      <NextEventContainer>
+        <NextEventTitle>
+          {nextEvent.override_message}
+        </NextEventTitle>
+      </NextEventContainer>
+    );
+  }
+
   return (
     <NextEventContainer>
       <NextEventTitle>
-        Nästa Event: {props.name} {props.date}
+        Nästa Event: {nextEvent.name} {nextEvent.date}{" "}
+        <a
+          style={{ color: "white" }}
+          href={nextEvent.signup_url}
+          target="_blank"
+        >
+          Registreringslänk
+        </a>
       </NextEventTitle>
     </NextEventContainer>
   );

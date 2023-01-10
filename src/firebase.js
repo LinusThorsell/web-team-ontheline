@@ -123,6 +123,16 @@ export async function getMediaDirectory() {
   return mediaDirectory;
 }
 
+export async function getNextEvent() {
+  var nextEventObject = {}
+  const nextEventSnapshot = await getDocs(collection(db, "nextevent"));
+  nextEventSnapshot.forEach((doc) => {
+    nextEventObject = doc.data();
+  });
+  
+  return nextEventObject;
+}
+
 export function uploadEvent(event) {
   addDoc(collection(db, "events"), event);
 }
@@ -135,6 +145,10 @@ export function uploadFolder(folder) {
 
 export function editTeamMember(documentId, newdata) {
   setDoc(doc(db, "team", documentId), newdata);
+}
+
+export function submitNextEvent(newdata) {
+  setDoc(doc(db, "nextevent", 'GE4QD3MvZQVzI1vjZQbb'), newdata);
 }
 
 export function addImageURLToDatabase(imageURL, folder, width, height) {
@@ -155,6 +169,18 @@ export function removeImage(document, url) {
       imgSnapshot.forEach((img) => {
         if (img.data().src === url) {
           deleteDoc(doc(db, "mediadirectory", document, "images", img.id));
+        }
+      });
+    }
+  );
+}
+export function removeEvent(eventtoremove) {
+  getDocs(collection(db, "events")).then(
+    (eventSnapshot) => {
+      eventSnapshot.forEach((event) => {
+        if (event.data().signup_url === eventtoremove.signup_url) {
+          console.log("Successfully found target: ", event)
+          deleteDoc(doc(db, "events", event.id));
         }
       });
     }
