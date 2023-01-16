@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const ImageContainer = styled.div`
-  height: 7em;
+  height: 7.5em;
   position: relative;
   overflow: hidden;
 `;
@@ -24,13 +24,13 @@ const Logo = styled.img`
   margin-right: auto;
   margin-top: 0.5em;
 
-  height: 4em;
+  height: 4.5em;
 `;
 
 const NavContainer = styled.nav`
   z-index: 2;
   position: absolute;
-  margin-top: 5em;
+  margin-top: 5.5em;
 
   height: 2em;
   width: 100%;
@@ -78,8 +78,8 @@ function NavBar() {
 
   return (
     <ImageContainer>
-      <Image src="https://firebasestorage.googleapis.com/v0/b/team-ontheline.appspot.com/o/Screenshot_20230105_154928.jpg?alt=media&token=9238acbd-7c67-457a-a07a-6f5e163439e3" />
-      <Logo src="https://firebasestorage.googleapis.com/v0/b/team-ontheline.appspot.com/o/Screenshot%20from%202023-01-05%2016-54-15.png?alt=media&token=d5c6117c-6a54-4214-bfcf-83cfcf9401a4" />
+      <Image src="https://firebasestorage.googleapis.com/v0/b/team-ontheline.appspot.com/o/misc%2Fheader.png?alt=media&token=df3f4661-fe89-43f9-9a75-bdfc3c288913" />
+      <Logo src="https://firebasestorage.googleapis.com/v0/b/team-ontheline.appspot.com/o/misc%2FOn-The-Line-logga-f%C3%A4rg-minus-2023.png?alt=media&token=612abe59-031d-421b-9804-8a1a152b9993" />
       <NavContainer>
         <NavList>
           <NavListItem>

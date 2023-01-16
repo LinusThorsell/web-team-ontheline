@@ -15,4 +15,6 @@ body,
 #root {
   height: 100vh;
   background-color: #301934;
+
+  overflow-x: hidden;
 }

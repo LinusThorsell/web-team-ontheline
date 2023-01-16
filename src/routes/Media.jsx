@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Gallery } from "react-grid-gallery";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import { images } from "../assets/images.jsx";
 import { getMediaDirectory, getMediaImages } from "../firebase";
 
 function MediaGalleryLightbox(props) {

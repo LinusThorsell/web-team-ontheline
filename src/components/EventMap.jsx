@@ -10,8 +10,6 @@ const EventMapContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background-image: url("https://live.staticflickr.com/2338/1735257057_60f3748b97_b.jpg")
 `;
 const EventMapImage = styled.img`
   width: 100%;

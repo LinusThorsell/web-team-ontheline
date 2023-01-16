@@ -181,7 +181,7 @@ function Admin() {
       <h1 style={{ textAlign: "center", marginBottom: "0" }}>Admin panel</h1>
       <p style={{ textAlign: "center", marginTop: "0" }}>
         Om du har hamnat här och du vet med dig att du inte ska kunna komma hit,
-        kontakta linus@teamontheline.com
+        kontakta admin@teamontheline.com
       </p>
 
       <InsertDivider />
