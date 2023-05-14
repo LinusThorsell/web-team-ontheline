@@ -41,18 +41,21 @@ function Event() {
   });
 
   return (
-    <EventCardContainer>
-      {events.map((event) => (
-        <EventCard
-          event={event.event}
-          course={event.course}
-          sponsor={event.sponsor}
-          date={event.date}
-          signup_url={event.signup_url}
-          key={event.signup_url}
-        />
-      ))}
-    </EventCardContainer>
+    <>
+      <h2 style={{textAlign: "center"}}>Resultat hittas <a href="/resultat" style={{color: "pink"}}>här</a>!</h2>
+      <EventCardContainer>
+        {events.map((event) => (
+          <EventCard
+            event={event.event}
+            course={event.course}
+            sponsor={event.sponsor}
+            date={event.date}
+            signup_url={event.signup_url}
+            key={event.signup_url}
+          />
+        ))}
+      </EventCardContainer>
+    </>
   );
 }
 

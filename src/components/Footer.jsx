@@ -31,11 +31,13 @@ function Footer() {
     <FooterContainer>
       <ListContainer>
         <h3>Om oss</h3>
-        <li>OnTheLine AB</li>
+        <li>OffTheLine AB</li>
+        <li>Org Nr: 559427-4101</li>
         <li>----------------------</li>
         <li>Linus Thorsell</li>
         <li>Vincent Müller</li>
         <li>Robert Sjöblom</li>
+        <li>Oscar Lövborg</li>
       </ListContainer>
       <ListContainer>
         <h3>Sociala Medier</h3>

@@ -10,7 +10,7 @@ import {
   deleteDoc,
 } from "firebase/firestore/lite";
 import { getAuth } from "firebase/auth";
-import { getStorage } from "firebase/storage";
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -48,7 +48,7 @@ async function fetchData() {
   });
   const teamSnapshot = await getDocs(collection(db, "team"));
   teamSnapshot.forEach((doc) => {
-    team = [...team, {data: doc.data(), id: doc.id}];
+    team = [...team, { data: doc.data(), id: doc.id }];
   });
   const mediaDirectorySnapshot = await getDocs(
     collection(db, "mediadirectory")
@@ -129,7 +129,7 @@ export async function getNextEvent() {
   nextEventSnapshot.forEach((doc) => {
     nextEventObject = doc.data();
   });
-  
+
   return nextEventObject;
 }
 
@@ -185,4 +185,42 @@ export function removeEvent(eventtoremove) {
       });
     }
   );
+}
+
+const read = (blob) => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.onload = (event) => resolve(event.target.result);
+  reader.onerror = reject;
+  reader.readAsText(blob);
+});
+
+async function getEventItemPromise(itemRef) {
+  return getDownloadURL(itemRef).then((url) => {
+    return fetch(url).then((response) => {
+      return response.blob().then((blob) => {
+        return read(blob)
+      })
+    })
+  })
+}
+
+export async function getEventResults() {
+  const storageRef = ref(storage, "results/ontheline2023")
+  return listAll(storageRef)
+    .then((res) => {
+      const partResults = []
+      res.prefixes.forEach((folderRef) => {
+        // All the prefixes under listRef.
+        // You may call listAll() recursively on them.
+      });
+      res.items.forEach((itemRef) => {
+        // All the items under listRef.
+        partResults.push(getEventItemPromise(itemRef))
+      });
+
+      return Promise.all(partResults)
+
+    }).catch((error) => {
+      // Uh-oh, an error occurred!
+    });
 }

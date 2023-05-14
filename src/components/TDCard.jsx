@@ -10,25 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
 function TDCard(props) {
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
-  // TODO: Fix formatting in the inthebag dropdown
   return (
     <Card
       sx={{
@@ -51,28 +33,6 @@ function TDCard(props) {
           {props.description}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        View in the bag
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          {props.inthebag.split("\\n").map((item) => {
-            return (
-              <Typography key={item} paragraph>
-                {item}
-              </Typography>
-            );
-          })}
-        </CardContent>
-      </Collapse>
     </Card>
   );
 }

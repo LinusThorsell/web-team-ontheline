@@ -13,7 +13,8 @@ import Home from "./routes/Home";
 import Event from "./routes/Event";
 import Media from "./routes/Media";
 import Team from "./routes/Team";
-import Contact from "./routes/Contact.jsx"
+import Contact from "./routes/Contact"
+import Results from "./routes/Results"
 import Admin from "./routes/Admin";
 import AdminLogin from "./routes/AdminLogin";
 import FourZeroFour from "./routes/FourZeroFour";
@@ -49,6 +50,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/media" element={<Media />} />
             <Route path="/team" element={<Team />} />
             <Route path="/kontakt" element={<Contact />} />
+            <Route path="/resultat" element={<Results />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="*" element={<FourZeroFour />} />

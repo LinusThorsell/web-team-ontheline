@@ -18,3 +18,9 @@ body,
 
   overflow-x: hidden;
 }
+
+table, th, td {
+  border: thin solid white;
+  border-collapse: collapse;
+  width: fit-content;
+}
