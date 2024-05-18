@@ -39,7 +39,6 @@ const TeamMemberContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
 
-  align-items: center;
   justify-content: center;
 `;
 
@@ -54,7 +53,7 @@ function Team() {
 
   return (
     <TeamContainer>
-      <h1>Team OnTheLine 2023</h1>
+      <h1>Team OnTheLine { new Date().getFullYear() }</h1>
       <p>Det är vi som kommer göra OnTheline's event riktigt grymma!</p>
       <TeamMemberContainer>
         {team.map((td) => (
@@ -70,7 +69,7 @@ function Team() {
         ))}
       </TeamMemberContainer>
       <h3>Vill du vara med i vårat team och skapa massvis med roliga event?</h3>
-      <p>Kontakta oss via email: team@teamontheline.com</p>
+      <p>Kontakta oss via email: kontakta@teamontheline.com</p>
     </TeamContainer>
   );
 }

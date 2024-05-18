@@ -56,7 +56,6 @@ function Footer() {
         <h3>Kontakt</h3>
         <li>kontakta@teamontheline.com</li>
         <li>sponsors@teamontheline.com</li>
-        <li>admin@teamontheline.com</li>
         <Link to="/admin"> Admin </Link>
       </ListContainer>
     </FooterContainer>

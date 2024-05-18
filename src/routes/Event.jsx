@@ -25,7 +25,7 @@ function Event() {
   }, []);
 
   let sorted_events = events;
-  sorted_events.sort(function (a, b) {
+  sorted_events.sort(function(a, b) {
     let [day1, month1] = a.date.split(" ")[0].split("/");
     let [day2, month2] = b.date.split(" ")[0].split("/");
     let year1 = a.date.split(" ")[2];
@@ -41,21 +41,18 @@ function Event() {
   });
 
   return (
-    <>
-      <h2 style={{textAlign: "center"}}>Resultat hittas <a href="/resultat" style={{color: "pink"}}>här</a>!</h2>
-      <EventCardContainer>
-        {events.map((event) => (
-          <EventCard
-            event={event.event}
-            course={event.course}
-            sponsor={event.sponsor}
-            date={event.date}
-            signup_url={event.signup_url}
-            key={event.signup_url}
-          />
-        ))}
-      </EventCardContainer>
-    </>
+    <EventCardContainer>
+      {events.map((event) => (
+        <EventCard
+          event={event.event}
+          course={event.course}
+          sponsor={event.sponsor}
+          date={event.date}
+          signup_url={event.signup_url}
+          key={event.signup_url}
+        />
+      ))}
+    </EventCardContainer>
   );
 }
 

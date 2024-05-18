@@ -100,6 +100,13 @@ function NavBar() {
           </NavListItem>
           <NavListItem>
             <NavLink
+              to="/resultat"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+            Resultat</NavLink>
+          </NavListItem>
+          <NavListItem>
+            <NavLink
               to="/media"
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
@@ -115,7 +122,11 @@ function NavBar() {
             </NavLink>
           </NavListItem>
           <NavListItem>
-            <NavLink to="/kontakt">Kontakt</NavLink>
+            <NavLink
+              to="/kontakt"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Kontakt</NavLink>
           </NavListItem>
         </NavList>
       </NavContainer>

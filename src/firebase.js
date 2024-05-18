@@ -204,8 +204,8 @@ async function getEventItemPromise(itemRef) {
   })
 }
 
-export async function getEventResults() {
-  const storageRef = ref(storage, "results/ontheline2023")
+export async function getEventResults(url) {
+  const storageRef = ref(storage, url)
   return listAll(storageRef)
     .then((res) => {
       const partResults = []

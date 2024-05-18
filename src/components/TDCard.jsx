@@ -17,7 +17,6 @@ function TDCard(props) {
         minWidth: "20em",
         width: "23em",
         maxWidth: "30%",
-        minHeight: "30em",
         margin: "1em",
       }}
     >
@@ -28,7 +27,7 @@ function TDCard(props) {
         image={props.mainimage}
         alt={"Picture of: " + props.name}
       />
-      <CardContent>
+      <CardContent style={{paddingBottom: 0}}>
         <Typography variant="body2" color="text.secondary">
           {props.description}
         </Typography>
