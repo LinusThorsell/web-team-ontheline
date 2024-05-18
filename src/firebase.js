@@ -17,7 +17,7 @@ import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCUtt6mMFReiZ31a8FaAs_jkxFnGP0nfYg",
+  apiKey: "AIzaSyAOzuE9YFazPvT_VeyPuBJpR249xAxpVm4",
   authDomain: "team-ontheline.firebaseapp.com",
   projectId: "team-ontheline",
   storageBucket: "team-ontheline.appspot.com",
