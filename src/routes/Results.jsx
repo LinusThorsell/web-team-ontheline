@@ -17,7 +17,7 @@ function ResultPage() {
         // Fetch all leaderboards in parallel
         const responses = await Promise.all(
           leaderboardIds.map(id =>
-            fetch(`https://api.teamontheline.com/api/tour/get/leaderboard/${id}`)
+            fetch(`https://api.teamontheline.com/api/tour/leaderboard/${id}`)
           )
         );
 
