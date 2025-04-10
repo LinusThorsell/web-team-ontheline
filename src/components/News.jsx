@@ -76,11 +76,22 @@ export function NewsContent(props) {
   );
 }
 
+function getDateObject(input) {
+  const [dayMonth, year] = input.split(" - ");
+  const [day, month] = dayMonth.split("/");
+
+  // Create a Date object (note: months are 0-indexed in JS)
+  return new Date(Number(year), Number(month) - 1, Number(day));
+}
+
 function News() {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     getNews().then((data) => {
+      data.sort(function (a, b) {
+        return getDateObject(b.date) - getDateObject(a.date);
+      })
       setNews(data);
     });
   }, []);
