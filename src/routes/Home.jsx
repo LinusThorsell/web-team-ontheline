@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
       <NextEvent />
-      <EventMap url="https://firebasestorage.googleapis.com/v0/b/team-ontheline.appspot.com/o/misc%2Fschedule.jpg?alt=media&token=3f356bb1-a601-43e0-9d70-98f8207f0cb6" />
+      <EventMap url="https://firebasestorage.googleapis.com/v0/b/team-ontheline.appspot.com/o/misc%2Fotl_2025.jpg?alt=media&token=77f0c64e-1618-43bf-9841-3881abd9c27c" />
       <News />
     </>
   );
