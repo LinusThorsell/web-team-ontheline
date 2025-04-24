@@ -12,7 +12,7 @@ function ResultPage() {
       try {
         // Array of leaderboard IDs that you want to fetch
         let leaderboardIds = await fetch('https://api.teamontheline.com/api/tours').then(res => { return res.json() });
-        leaderboardIds = leaderboardIds.body.map(x => x.id);
+        leaderboardIds = leaderboardIds.body.map(x => x.id).reverse();
 
         // Fetch all leaderboards in parallel
         const responses = await Promise.all(

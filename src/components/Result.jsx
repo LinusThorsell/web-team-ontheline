@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getEventResults } from "../firebase";
-
-import { convertCSVToArrayOfObjects } from "convert-csv-to-array/lib/modules/convert-csv-to-array-of-objects";
 
 const ResultContainer = styled.div`
   margin: 0;
@@ -16,6 +12,21 @@ const ResultContainer = styled.div`
 
   width: 100vw;
 `;
+
+const preferredOrder = ["MPO", "FPO", "MA2", "MA3", "FA3", "MA4", "MJ18", "MJ15"];
+const sortedKeys = (result) => {
+  return Object.keys(result).sort((a, b) => {
+    const aIndex = preferredOrder.indexOf(a);
+    const bIndex = preferredOrder.indexOf(b);
+
+    if (aIndex === -1 && bIndex === -1) return a.localeCompare(b); // both unknown, sort alphabetically
+    if (aIndex === -1) return 1;  // a is unknown, goes after
+    if (bIndex === -1) return -1; // b is unknown, goes after
+
+    return aIndex - bIndex;
+  });
+};
+
 
 function DivisionBox({ div, players, roundsToCount, keyProp }) {
   players = players.entries;
@@ -58,7 +69,7 @@ function Result({ result }) {
         <h1 style={{ marginBottom: 0 }}>{result.tour.title}</h1>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
           {
-            Object.keys(result.divisions).map((key) =>
+            sortedKeys(result.divisions).map((key) =>
               <DivisionBox key={key + result.tour.event_url} keyProp={key + result.tour.event_url} div={key} players={result.divisions[key]} roundsToCount={result.tour.score_count} />
             )
           }
